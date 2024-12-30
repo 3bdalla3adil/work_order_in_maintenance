@@ -6,7 +6,24 @@
         <field name="model">maintenance.request</field>
         <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
         <field name="arch" type="xml">
-
+            <!-- ===============================ADDED CLAIM INFO BEGINNING================================-->
+            <xpath expr="//sheet/group" position="after">
+                 <group string="CLAIM INFO" >
+                    <field name="unit" />
+                    <field name="description" />
+                    <field name="claim_type_id" />
+                    <field name="claim_date" options="{'format':'%d-%m-%Y'}" />
+                    <field name="priority" colors='{"3": "success", "2": "warning", "1": "danger", "0": "info"}'/>
+                    <field name="claim_group"/>
+                    <field name="customer_feedback" />
+<!--                    <field name="claim_ids" string="Related Claims"/>-->
+<!--                 </group>-->
+<!--                 <group string="STAFF INFO">-->
+                    <field name="remarks_of_works" />
+                    <field name="remarks" />
+                 </group>
+            </xpath>
+            <!-- ===============================ADDED CLAIM INFO END================================-->
             <xpath expr="//form/header" position="inside">
                 <button id="create_work_order" name="action_main_create_work_order" string="Create Work Order"
                         type="object" class="btn-primary" data-hotkey="q"
@@ -22,12 +39,6 @@
                 <field name="is_create_work_order" invisible="1"/>
                 <field name="is_material_work_order" invisible="1"/>
             </field>
-
-             <xpath expr="//field[@name='company_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//field[@name='email_cc']" position="replace"/>
-
 
         </field>
     </record>

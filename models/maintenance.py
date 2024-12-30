@@ -40,32 +40,6 @@ class MaintenanceRequest(models.Model):
                                             compute='_compute_create_order_request',
                                             help="Flag indicating if a work order "
                                                  "needs to be created")
-    # ==========================ADDED CLAIM INFO================================================
-
-    claim_no = fields.Char(string="Claim No.", required=False, tracking=True)
-
-    claim_type_id = fields.Many2one(comodel_name="claim.type",
-                                    string="Claim Type", required=False, tracking=True)  # replace maintenance_type
-    # state = fields.Selection(selection=[
-    #     ('new', 'New'),
-    #     ('scheduled', 'Scheduled'),
-    #     ('in_progress', 'IN Progress'),
-    #     ('done', 'Completed'),
-    # ], string="Claim Status", required=False, tracking=True, default='new')  # replace stage_id
-
-    # claim_date = fields.Datetime(string="Claim Date",
-    #                              required=False, tracking=True,
-    #                              default=fields.Date.context_today)  # replace request_date
-    # claim_dat = fields.Date(string="Claim Date",
-    #                         required=False, tracking=True, default=fields.Date.context_today)  # replace request_date
-    unit = fields.Many2one(comodel_name="property.unit", string="Unit", required=False, tracking=True, )
-
-    group = fields.Selection([('a', 'A'), ('b', 'B'), ], string="Group", )  # required=False, tracking=True,
-
-    remarks_of_works = fields.Char(string="Remarks Of Works", required=False, tracking=True, )
-    customer_feedback = fields.Char(string="Customer Feedback", required=False, tracking=True, )
-
-    remarks = fields.Char(string="Remarks", required=False, tracking=True, )
 
     def _compute_create_order_request(self):
         """
